@@ -9,13 +9,29 @@ db = SQLite3::Database.new("game.db")
 
 # Create a table
 rows = db.execute <<-SQL
-  create table numbers (
-    name varchar(30),
-    val int
+  create table players (
+    id PRIMARY KEY,
+    name varchar(255),
+    email varchar(255),
+    password varchar(255)
   );
 SQL
 
-p rows
+rows = db.execute <<-SQL
+  create table cards(
+    id PRIMARY KEY,
+    name varchar(255),
+    top int,
+    left int,
+    bottom int,
+    right int,
+    element varchar(255),
+    img varchar(255),
+    card_id varchar(255),
+    player_id int
+  );
+SQL
+
 
 class Player
     attr_accessor :name, :email, :password, :deck
